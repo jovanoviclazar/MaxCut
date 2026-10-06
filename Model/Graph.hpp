@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-#include <utility>
 #include <vector>
 
 namespace MaxCut
@@ -9,12 +7,12 @@ namespace MaxCut
 class Graph
 {
   private:
-    int NumberOfVertices = 0;
-    int NumberOfEdges = 0;
-    std::vector<std::vector<std::pair<int, double>>> Connections;
+    int NumberOfEdges{};
+    int NumberOfVertices{};
+    std::vector<std::vector<double>> Connections;
 
   public:
-    Graph(std::string &FileName);
     Graph() = default;
+    Graph(int numberOfEdges, int numberOfVertices, std::vector<std::vector<double>> &connections);
 };
 } // namespace MaxCut
