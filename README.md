@@ -17,8 +17,26 @@ cmake --build build
 ## Run
 
 ```bash
-./build/MaxCut <arguments>
+./build/MaxCut [-i input_path] [-o output_path] [-a algorithm] [-s seed]
 ```
+
+| Short | Long | Description | Default |
+| --- | --- | --- | --- |
+| `-i` | `--input` | Path to the graph input file | `Dummy.txt` |
+| `-o` | `--output` | Optional path to write output results | *(None)* |
+| `-a` | `--algorithm` | Algorithm to run (`random`, `brute`, `gw`) | `random` |
+| `-s` | `--seed` | Random seed for stochastic algorithms | `0` |
+
+## Examples
+
+### Run with defaults
+./build/MaxCut
+
+### Specify input graph and algorithm
+./build/MaxCut -i data/graph.txt -a greedy
+
+### Full options using long flags
+./build/MaxCut --input data/graph.txt --output result.txt --algorithm random --seed 42
 
 ## Format
 
