@@ -24,7 +24,8 @@ Configuration ParseArgs(const std::vector<std::string> &args)
 }
 
 } // namespace
-
+// NOLINTBEGIN(cppcoreguidelines-avoid-do-while, bugprone-chained-comparison, misc-use-anonymous-namespace,
+// bugprone-throwing-static-initialization, cert-err58-cpp, readability-function-cognitive-complexity)
 TEST_CASE("ArgumentParser defaults", "[cli]")
 {
     const Configuration config = ParseArgs({"MaxCut"});
@@ -85,5 +86,6 @@ TEST_CASE("ArgumentParser error handling", "[cli]")
         REQUIRE_THROWS_AS(ParseArgs({"MaxCut", "-s", "not_a_number"}), std::invalid_argument);
     }
 }
-
+// NOLINTEND(cppcoreguidelines-avoid-do-while, bugprone-chained-comparison, misc-use-anonymous-namespace,
+// bugprone-throwing-static-initialization, cert-err58-cpp, readability-function-cognitive-complexity)
 } // namespace MaxCut::Testing
