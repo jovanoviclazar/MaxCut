@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-    const MaxCut::Configuration config = MaxCut::ArgumentParser::Parse(argc, argv);
+    MaxCut::Configuration config = MaxCut::ArgumentParser::Parse(argc, argv);
     const MaxCut::Core core(config);
     return core.Run();
 }

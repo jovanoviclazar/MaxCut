@@ -9,9 +9,9 @@ namespace MaxCut
 std::vector<std::string> ArgumentParser::ConvertArgs(int argc, char **argv)
 {
     std::vector<std::string> returnValue;
-    returnValue.reserve(argc - 1);
+    returnValue.reserve(argc);
 
-    for (int i = 1; i < argc; i++)
+    for (int i = 0; i < argc; i++)
     {
         returnValue.emplace_back(argv[i]);
     }
