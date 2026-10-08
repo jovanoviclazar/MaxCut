@@ -10,6 +10,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
+# Main executable
 add_executable(MaxCut
     Main.cpp
 
@@ -36,3 +37,26 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 enable_testing()
+
+include(FetchContent)
+FetchContent_Declare(
+    Catch2
+    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+    GIT_TAG        v3.5.2
+)
+FetchContent_MakeAvailable(Catch2)
+
+add_executable(ArgumentParserTest 
+    Tests/ArgumentParserTest.cpp 
+    IO/ArgumentParser.cpp
+)
+target_compile_features(ArgumentParserTest PRIVATE cxx_std_20)
+target_include_directories(ArgumentParserTest PRIVATE ${CMAKE_SOURCE_DIR})
+target_link_libraries(ArgumentParserTest PRIVATE Catch2::Catch2WithMain)
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(ArgumentParserTest PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+include(Catch)
+catch_discover_tests(ArgumentParserTest)
