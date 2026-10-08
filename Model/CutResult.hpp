@@ -13,8 +13,8 @@ class CutResult
 
   public:
     CutResult(std::vector<int> &vectorA, std::vector<int> &vectorB, double cutCost);
-    std::vector<int> &VectorA() const;
-    std::vector<int> &VectorB() const;
+    const std::vector<int> &VectorA() const;
+    const std::vector<int> &VectorB() const;
     double CutCost() const;
 };
 } // namespace MaxCut
