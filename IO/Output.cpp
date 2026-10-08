@@ -1,9 +1,16 @@
 #include "IO/Output.hpp"
+#include <fstream>
 
 namespace MaxCut
 {
 void Output::Write(std::ostream &output, const CutResult &cut)
 {
+    output << cut;
+}
+
+void Output::WriteToFile(const std::string &filePath, const CutResult &cut)
+{
+    std::fstream output(filePath);
     output << cut;
 }
 
