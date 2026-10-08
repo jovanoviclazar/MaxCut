@@ -11,7 +11,7 @@
 
 namespace MaxCut
 {
-Core::Core(Configuration config) : m_config(std::move(config))
+Core::Core(Configuration &config) : m_config(std::move(config))
 {
 }
 

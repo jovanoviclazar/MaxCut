@@ -8,7 +8,7 @@ namespace MaxCut
 class Core
 {
   public:
-    Core(Configuration config);
+    Core(Configuration &config);
 
     int Run() const;
 
