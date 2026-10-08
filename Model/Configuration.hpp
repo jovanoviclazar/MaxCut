@@ -7,7 +7,7 @@ namespace MaxCut
 {
 struct Configuration
 {
-    std::string inputPath;
+    std::string inputPath = "Dummy.txt";
     std::optional<std::string> outputPath;
     std::string algorithm = "random";
     unsigned seed = 0;
