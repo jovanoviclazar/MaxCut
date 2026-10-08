@@ -1,6 +1,10 @@
+#include "Core/Core.hpp"
+#include "IO/ArgumentParser.hpp"
+#include "Model/Configuration.hpp"
+
 int main(int argc, char **argv)
 {
-    (void)argc;
-    (void)argv;
-    return 0;
+    const MaxCut::Configuration config = MaxCut::ArgumentParser::Parse(argc, argv);
+    const MaxCut::Core core(config);
+    return core.Run();
 }
