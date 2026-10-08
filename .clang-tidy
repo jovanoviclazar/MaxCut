@@ -25,7 +25,9 @@ Checks: >
   -portability-avoid-pragma-once,
   -cppcoreguidelines-init-variables,
   -cppcoreguidelines-pro-bounds-avoid-unchecked-container-access,
-  -bugprone-easily-swappable-parameters
+  -bugprone-easily-swappable-parameters,
+  -cert-msc51-cpp,
+  -cert-msc32-c,
 CheckOptions:
   - key: readability-identifier-naming.PrivateMemberPrefix
     value: 'm_'
