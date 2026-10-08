@@ -3,8 +3,8 @@
 
 namespace MaxCut
 {
-CutResult::CutResult(std::vector<int> &vectorA, std::vector<int> &vectorB)
-    : VectorA(std::move(vectorA)), VectorB(std::move(vectorB))
+CutResult::CutResult(std::vector<int> &vectorA, std::vector<int> &vectorB, double cutCost)
+    : m_vectorA(std::move(vectorA)), m_vectorB(std::move(vectorB)), m_cutCost(cutCost)
 {
 }
 } // namespace MaxCut

@@ -4,7 +4,7 @@
 namespace MaxCut
 {
 Graph::Graph(int numberOfEdges, int numberOfVertices, std::vector<std::vector<double>> &connections)
-    : NumberOfEdges(numberOfEdges), NumberOfVertices(numberOfVertices), Connections(std::move(connections))
+    : m_numberOfEdges(numberOfEdges), m_numberOfVertices(numberOfVertices), m_connections(std::move(connections))
 {
 }
 } // namespace MaxCut

@@ -7,9 +7,9 @@ namespace MaxCut
 class Graph
 {
   private:
-    int NumberOfEdges{};
-    int NumberOfVertices{};
-    std::vector<std::vector<double>> Connections;
+    int m_numberOfEdges{};
+    int m_numberOfVertices{};
+    std::vector<std::vector<double>> m_connections;
 
   public:
     Graph() = default;
