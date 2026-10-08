@@ -28,6 +28,7 @@ Checks: >
   -bugprone-easily-swappable-parameters,
   -cert-msc51-cpp,
   -cert-msc32-c,
+  -bugprone-random-generator-seed,
 CheckOptions:
   - key: readability-identifier-naming.PrivateMemberPrefix
     value: 'm_'
