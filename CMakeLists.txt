@@ -21,6 +21,11 @@ add_executable(MaxCut
     IO/ArgumentParser.cpp
     IO/GraphParser.cpp
     IO/Output.cpp
+
+    Solver/SolverFactory.cpp
+    Solver/Algorithm/BasicRandomSolver.cpp
+    Solver/Algorithm/BruteForceSolver.cpp
+    Solver/Algorithm/GoemansWilliamsonSolver.cpp
 )
 
 target_compile_features(MaxCut PRIVATE cxx_std_20)

@@ -21,6 +21,20 @@ Checks: >
   -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
   -concurrency-mt-unsafe,
   -misc-include-cleaner,
-  -misc-non-private-member-variables-in-classes
+  -misc-non-private-member-variables-in-classes,
+  -portability-avoid-pragma-once,
+  -cppcoreguidelines-init-variables,
+  -cppcoreguidelines-pro-bounds-avoid-unchecked-container-access,
+  -bugprone-easily-swappable-parameters,
+  -cert-msc51-cpp,
+  -cert-msc32-c,
+  -bugprone-random-generator-seed,
+CheckOptions:
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: 'm_'
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: camelBack
+  - key: readability-identifier-naming.MethodCase
+    value: CamelCase
 WarningsAsErrors: '*'
 HeaderFilterRegex: '^.*/(Core|Model|IO|Solver|Validation)/.*'
