@@ -16,6 +16,5 @@ class IMaxCutSolver
     IMaxCutSolver &operator=(IMaxCutSolver &&) = delete;
 
     virtual CutResult Solve(const Graph &graph) = 0;
-    virtual CutResult Solve(Graph &graph);
 };
 } // namespace MaxCut
