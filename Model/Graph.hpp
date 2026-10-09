@@ -16,6 +16,6 @@ class Graph
     Graph(int numberOfEdges, int numberOfVertices, std::vector<std::vector<double>> &connections);
     int NumberOfEdges() const;
     int NumberOfVertices() const;
-    std::vector<std::vector<double>> Connections() const;
+    const std::vector<std::vector<double>> &Connections() const;
 };
 } // namespace MaxCut
