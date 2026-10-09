@@ -15,7 +15,7 @@ int Graph::NumberOfVertices() const
 {
     return m_numberOfVertices;
 }
-std::vector<std::vector<double>> Graph::Connections() const
+const std::vector<std::vector<double>> &Graph::Connections() const
 {
     return m_connections;
 }
