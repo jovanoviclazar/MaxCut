@@ -36,6 +36,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(MaxCut PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
+# Tests
 enable_testing()
 
 include(FetchContent)
@@ -46,17 +47,23 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
-add_executable(ArgumentParserTest 
-    Tests/ArgumentParserTest.cpp 
+add_executable(UnitTests
+    Tests/ArgumentParserTest.cpp
+    Tests/GraphParserTest.cpp
+
     IO/ArgumentParser.cpp
+    IO/GraphParser.cpp
+    Model/Graph.cpp
 )
-target_compile_features(ArgumentParserTest PRIVATE cxx_std_20)
-target_include_directories(ArgumentParserTest PRIVATE ${CMAKE_SOURCE_DIR})
-target_link_libraries(ArgumentParserTest PRIVATE Catch2::Catch2WithMain)
+
+target_compile_features(UnitTests PRIVATE cxx_std_20)
+target_include_directories(UnitTests PRIVATE ${CMAKE_SOURCE_DIR})
+target_link_libraries(UnitTests PRIVATE Catch2::Catch2WithMain)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(ArgumentParserTest PRIVATE -Wall -Wextra -Wpedantic)
+    target_compile_options(UnitTests PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
+list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 include(Catch)
-catch_discover_tests(ArgumentParserTest)
+catch_discover_tests(UnitTests)
