@@ -24,7 +24,7 @@ add_executable(MaxCut
     IO/Output.cpp
 
     Solver/SolverFactory.cpp
-    Solver/Algorithm/BasicRandomSolver.cpp
+    Solver/Algorithm/UniformRandomSolver.cpp
     Solver/Algorithm/BruteForceSolver.cpp
     Solver/Algorithm/GoemansWilliamsonSolver.cpp
 )

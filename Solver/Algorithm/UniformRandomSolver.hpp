@@ -7,13 +7,13 @@
 
 namespace MaxCut
 {
-class BasicRandomSolver : public IMaxCutSolver
+class UniformRandomSolver : public IMaxCutSolver
 {
   private:
     std::mt19937 m_rng;
 
   public:
-    BasicRandomSolver(unsigned seed);
+    UniformRandomSolver(unsigned seed);
     CutResult Solve(const Graph &graph) override;
 };
 } // namespace MaxCut
