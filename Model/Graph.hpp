@@ -7,15 +7,15 @@ namespace MaxCut
 class Graph
 {
   private:
-    int m_numberOfEdges{};
-    int m_numberOfVertices{};
+    size_t m_numberOfEdges{};
+    size_t m_numberOfVertices{};
     std::vector<std::vector<double>> m_connections;
 
   public:
     Graph() = default;
-    Graph(int numberOfEdges, int numberOfVertices, std::vector<std::vector<double>> &connections);
-    int NumberOfEdges() const;
-    int NumberOfVertices() const;
+    Graph(size_t numberOfEdges, size_t numberOfVertices, std::vector<std::vector<double>> &connections);
+    size_t NumberOfEdges() const;
+    size_t NumberOfVertices() const;
     const std::vector<std::vector<double>> &Connections() const;
 };
 } // namespace MaxCut

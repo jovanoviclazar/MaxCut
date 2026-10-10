@@ -7,14 +7,14 @@ namespace MaxCut
 class CutResult
 {
   private:
-    std::vector<int> m_vectorA;
-    std::vector<int> m_vectorB;
+    std::vector<size_t> m_vectorA;
+    std::vector<size_t> m_vectorB;
     double m_cutCost;
 
   public:
-    CutResult(std::vector<int> &vectorA, std::vector<int> &vectorB, double cutCost);
-    const std::vector<int> &VectorA() const;
-    const std::vector<int> &VectorB() const;
+    CutResult(std::vector<size_t> &vectorA, std::vector<size_t> &vectorB, double cutCost);
+    const std::vector<size_t> &VectorA() const;
+    const std::vector<size_t> &VectorB() const;
     double CutCost() const;
 };
 } // namespace MaxCut

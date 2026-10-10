@@ -50,10 +50,15 @@ FetchContent_MakeAvailable(Catch2)
 add_executable(UnitTests
     Tests/ArgumentParserTest.cpp
     Tests/GraphParserTest.cpp
+    Tests/BruteForceSolverTest.cpp
+
+    Solver/Algorithm/BruteForceSolver.cpp
 
     IO/ArgumentParser.cpp
     IO/GraphParser.cpp
+    
     Model/Graph.cpp
+    Model/CutResult.cpp
 )
 
 target_compile_features(UnitTests PRIVATE cxx_std_20)

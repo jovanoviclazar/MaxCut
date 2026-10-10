@@ -32,7 +32,7 @@ TEST_CASE("ArgumentParser defaults", "[cli]")
 
     REQUIRE(config.inputPath == "Dummy.txt");
     REQUIRE_FALSE(config.outputPath.has_value());
-    REQUIRE(config.algorithm == "random");
+    REQUIRE(config.algorithm == "brute");
     REQUIRE(config.seed == 0U);
 }
 
@@ -65,7 +65,7 @@ TEST_CASE("ArgumentParser retains default values for omitted flags", "[cli]")
 
     CHECK(config.inputPath == "custom_graph.txt");
     CHECK_FALSE(config.outputPath.has_value());
-    CHECK(config.algorithm == "random");
+    CHECK(config.algorithm == "brute");
     CHECK(config.seed == 0U);
 }
 

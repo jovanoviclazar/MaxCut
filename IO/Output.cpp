@@ -10,8 +10,13 @@ void Output::Write(std::ostream &output, const CutResult &cut)
 
 void Output::WriteToFile(const std::string &filePath, const CutResult &cut)
 {
-    std::fstream output(filePath);
+    std::ofstream output(filePath);
+    if (!output.is_open())
+    {
+        throw std::runtime_error("Cannot open output file: " + filePath);
+    }
     output << cut;
+    output.close();
 }
 
 std::ostream &operator<<(std::ostream &output, const CutResult &cut)
@@ -20,7 +25,7 @@ std::ostream &operator<<(std::ostream &output, const CutResult &cut)
 
     std::string separator;
 
-    for (const int element : cut.VectorA())
+    for (const size_t element : cut.VectorA())
     {
         output << separator << element;
         separator = " ";
@@ -29,7 +34,7 @@ std::ostream &operator<<(std::ostream &output, const CutResult &cut)
 
     separator = "";
 
-    for (const int element : cut.VectorB())
+    for (const size_t element : cut.VectorB())
     {
         output << separator << element;
         separator = " ";
