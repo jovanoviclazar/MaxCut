@@ -3,15 +3,15 @@
 
 namespace MaxCut
 {
-Graph::Graph(int numberOfEdges, int numberOfVertices, std::vector<std::vector<double>> &connections)
+Graph::Graph(size_t numberOfEdges, size_t numberOfVertices, std::vector<std::vector<double>> &connections)
     : m_numberOfEdges(numberOfEdges), m_numberOfVertices(numberOfVertices), m_connections(std::move(connections))
 {
 }
-int Graph::NumberOfEdges() const
+size_t Graph::NumberOfEdges() const
 {
     return m_numberOfEdges;
 }
-int Graph::NumberOfVertices() const
+size_t Graph::NumberOfVertices() const
 {
     return m_numberOfVertices;
 }
