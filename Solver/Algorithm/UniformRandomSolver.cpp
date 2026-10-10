@@ -1,12 +1,12 @@
-#include "Solver/Algorithm/BasicRandomSolver.hpp"
+#include "Solver/Algorithm/UniformRandomSolver.hpp"
 
 namespace MaxCut
 {
-BasicRandomSolver::BasicRandomSolver(unsigned seed)
+UniformRandomSolver::UniformRandomSolver(unsigned seed)
 {
     m_rng.seed(seed);
 }
-CutResult BasicRandomSolver::Solve(const Graph &graph)
+CutResult UniformRandomSolver::Solve(const Graph &graph)
 {
     (void)graph;
     std::vector<size_t> vectorA;
