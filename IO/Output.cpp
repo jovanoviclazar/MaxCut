@@ -20,7 +20,7 @@ std::ostream &operator<<(std::ostream &output, const CutResult &cut)
 
     std::string separator;
 
-    for (const int element : cut.VectorA())
+    for (const size_t element : cut.VectorA())
     {
         output << separator << element;
         separator = " ";
@@ -29,7 +29,7 @@ std::ostream &operator<<(std::ostream &output, const CutResult &cut)
 
     separator = "";
 
-    for (const int element : cut.VectorB())
+    for (const size_t element : cut.VectorB())
     {
         output << separator << element;
         separator = " ";
