@@ -10,8 +10,13 @@ void Output::Write(std::ostream &output, const CutResult &cut)
 
 void Output::WriteToFile(const std::string &filePath, const CutResult &cut)
 {
-    std::fstream output(filePath);
+    std::ofstream output(filePath);
+    if (!output.is_open())
+    {
+        throw std::runtime_error("Cannot open output file: " + filePath);
+    }
     output << cut;
+    output.close();
 }
 
 std::ostream &operator<<(std::ostream &output, const CutResult &cut)
