@@ -56,6 +56,7 @@ add_executable(UnitTests
 
     IO/ArgumentParser.cpp
     IO/GraphParser.cpp
+    
     Model/Graph.cpp
     Model/CutResult.cpp
 )
