@@ -9,8 +9,8 @@ BasicRandomSolver::BasicRandomSolver(unsigned seed)
 CutResult BasicRandomSolver::Solve(const Graph &graph)
 {
     (void)graph;
-    std::vector<int> vectorA;
-    std::vector<int> vectorB;
+    std::vector<size_t> vectorA;
+    std::vector<size_t> vectorB;
 
     CutResult cut(vectorA, vectorB, 0);
     return cut;
