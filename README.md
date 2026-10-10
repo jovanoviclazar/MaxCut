@@ -25,7 +25,7 @@ cmake --build build
 | `-i` | `--input` | Path to the graph input file | `Dummy.txt` |
 | `-o` | `--output` | Optional path to write output results | *(None)* |
 | `-a` | `--algorithm` | Algorithm to run (`random`, `brute`, `gw`) | `random` |
-| `-s` | `--seed` | Random seed for stochastic algorithms | `0` |
+| `-s` | `--seed` | Random seed for stochastic algorithms | `12345` |
 
 ## Examples
 

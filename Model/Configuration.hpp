@@ -10,6 +10,6 @@ struct Configuration
     std::string inputPath = "Dummy.txt";
     std::optional<std::string> outputPath;
     std::string algorithm = "brute";
-    unsigned seed = 0;
+    unsigned seed = 12345;
 };
 } // namespace MaxCut
