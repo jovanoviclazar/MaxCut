@@ -1,6 +1,7 @@
 #include "Solver/SolverFactory.hpp"
 #include "Solver/Algorithm/BruteForceSolver.hpp"
 #include "Solver/Algorithm/GoemansWilliamsonSolver.hpp"
+#include "Solver/Algorithm/GreedySolver.hpp"
 #include "Solver/Algorithm/UniformRandomSolver.hpp"
 #include <functional>
 #include <map>
@@ -15,6 +16,7 @@ const std::map<std::string, std::function<std::unique_ptr<IMaxCutSolver>(unsigne
     static const std::map<std::string, std::function<std::unique_ptr<IMaxCutSolver>(unsigned)>> registry = {
         {"random", [](unsigned seed) { return std::make_unique<UniformRandomSolver>(seed); }},
         {"brute", [](unsigned) { return std::make_unique<BruteForceSolver>(); }},
+        {"greedy", [](unsigned) { return std::make_unique<GreedySolver>(); }},
         {"gw", [](unsigned seed) { return std::make_unique<GoemansWilliamsonSolver>(seed); }},
     };
     return registry;
