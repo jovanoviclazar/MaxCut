@@ -27,6 +27,7 @@ add_executable(MaxCut
     Solver/Algorithm/UniformRandomSolver.cpp
     Solver/Algorithm/BruteForceSolver.cpp
     Solver/Algorithm/GoemansWilliamsonSolver.cpp
+    Solver/Algorithm/GreedySolver.cpp
 )
 
 target_compile_features(MaxCut PRIVATE cxx_std_20)
@@ -51,8 +52,10 @@ add_executable(UnitTests
     Tests/ArgumentParserTest.cpp
     Tests/GraphParserTest.cpp
     Tests/BruteForceSolverTest.cpp
+    Tests/GreedySolverTest.cpp
 
     Solver/Algorithm/BruteForceSolver.cpp
+    Solver/Algorithm/GreedySolver.cpp
 
     IO/ArgumentParser.cpp
     IO/GraphParser.cpp
