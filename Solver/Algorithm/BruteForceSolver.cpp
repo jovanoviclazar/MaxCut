@@ -46,10 +46,10 @@ CutResult BruteForceSolver::Solve(const Graph &graph)
     std::vector<size_t> vectorB;
     double cutCost = 0.0;
 
-    std::vector<size_t> tmpVectorA({});
+    std::vector<size_t> tmpVectorA({0});
     std::vector<size_t> tmpVectorB({});
 
-    bruteSolve(0, vectorA, vectorB, cutCost, tmpVectorA, tmpVectorB, graph);
+    bruteSolve(1, vectorA, vectorB, cutCost, tmpVectorA, tmpVectorB, graph);
 
     CutResult cut(vectorA, vectorB, cutCost);
     return cut;

@@ -15,11 +15,11 @@ CutResult GreedySolver::Solve(const Graph &graph)
         double cutCostA = 0.0;
         double cutCostB = 0.0;
 
-        for (size_t x : vectorA)
+        for (const size_t x : vectorA)
         {
             cutCostA += graph.Connections()[i][x];
         }
-        for (size_t x : vectorB)
+        for (const size_t x : vectorB)
         {
             cutCostB += graph.Connections()[i][x];
         }
