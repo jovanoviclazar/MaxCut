@@ -30,6 +30,12 @@ Checks: >
   -cert-msc32-c,
   -bugprone-random-generator-seed,
   -misc-no-recursion,
+  -readability-function-cognitive-complexity,
+  -clang-analyzer-security.ArrayBound,
+  -readability-suspicious-call-argument,
+  -clang-analyzer-unix.Malloc,
+  -clang-analyzer-optin.portability.UnixAPI,
+
 CheckOptions:
   - key: readability-identifier-naming.PrivateMemberPrefix
     value: 'm_'

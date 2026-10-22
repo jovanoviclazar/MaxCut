@@ -37,7 +37,7 @@ Graph GraphParser::Parse(const std::string &fileName)
         {
             throw std::runtime_error("Invalid edge on line: " + std::to_string(i + 2));
         }
-        connections[u][v] = connections[v][u] = w;
+        connections[u - 1][v - 1] = connections[v - 1][u - 1] = w;
     }
     Graph graph(numberOfEdges, numberOfVertices, connections);
 
