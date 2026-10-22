@@ -48,7 +48,7 @@ class TempInstance
 // bugprone-throwing-static-initialization, cert-err58-cpp, readability-function-cognitive-complexity)
 TEST_CASE("GraphParser parses a valid graph", "[graph-parser]")
 {
-    const TempInstance instance("valid_graph.txt", "3 2\n0 1 1.5\n1 2 2.0\n");
+    const TempInstance instance("valid_graph.txt", "3 2\n1 2 1.5\n2 3 2.0\n");
 
     const Graph graph = GraphParser::Parse(instance.Name());
 
@@ -64,7 +64,7 @@ TEST_CASE("GraphParser parses a valid graph", "[graph-parser]")
 
 TEST_CASE("GraphParser produces a symmetric matrix", "[graph-parser]")
 {
-    const TempInstance instance("symmetric_graph.txt", "3 2\n0 1 1.5\n1 2 2.0\n");
+    const TempInstance instance("symmetric_graph.txt", "3 2\n1 2 1.5\n2 3 2.0\n");
 
     const Graph graph = GraphParser::Parse(instance.Name());
     const auto connections = graph.Connections();
@@ -110,13 +110,13 @@ TEST_CASE("GraphParser error handling", "[graph-parser]")
 
     SECTION("Throws when an edge line is incomplete")
     {
-        const TempInstance instance("bad_edge.txt", "3 2\n0 1 1.0\n1 2\n");
+        const TempInstance instance("bad_edge.txt", "3 2\n1 2 1.0\n2 3\n");
         REQUIRE_THROWS_AS(GraphParser::Parse(instance.Name()), std::runtime_error);
     }
 
     SECTION("Throws when fewer edges are present than declared")
     {
-        const TempInstance instance("missing_edge.txt", "3 2\n0 1 1.0\n");
+        const TempInstance instance("missing_edge.txt", "3 2\n1 2 1.0\n");
         REQUIRE_THROWS_AS(GraphParser::Parse(instance.Name()), std::runtime_error);
     }
 }
