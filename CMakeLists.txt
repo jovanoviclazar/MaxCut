@@ -13,20 +13,18 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
-set(EIGEN_BUILD_TESTING OFF CACHE BOOL "" FORCE)
-set(EIGEN_BUILD_DOC OFF CACHE BOOL "" FORCE)
-set(EIGEN_BUILD_PKGCONFIG OFF CACHE BOOL "" FORCE)
-set(CATCH_INSTALL_DOCS OFF CACHE BOOL "" FORCE)
-set(CATCH_INSTALL_EXTRAS OFF CACHE BOOL "" FORCE)
+set(CLARABEL_FEATURE_SDP "sdp-openblas" CACHE STRING "" FORCE)
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5) 
 
 include(FetchContent)
 
-FetchContent_Declare(
+FetchContent_Declare( 
     eigen
     GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
     GIT_TAG        3.4.0
     SYSTEM
     EXCLUDE_FROM_ALL
+    FIND_PACKAGE_ARGS 3.4 NAMES Eigen3
 )
 
 FetchContent_Declare(
@@ -37,6 +35,35 @@ FetchContent_Declare(
     EXCLUDE_FROM_ALL
 )
 
+FetchContent_MakeAvailable(eigen clarabel_cpp)
+
+add_library(maxcut_warnings INTERFACE)
+target_compile_options(maxcut_warnings INTERFACE
+    $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall;-Wextra;-Wpedantic>
+)
+
+add_library(maxcut_base STATIC
+    Model/Graph.cpp
+    Model/CutResult.cpp
+    IO/ArgumentParser.cpp
+    IO/GraphParser.cpp
+    IO/Output.cpp
+    Solver/Algorithm/UniformRandomSolver.cpp
+    Solver/Algorithm/BruteForceSolver.cpp
+    Solver/Algorithm/GreedySolver.cpp
+)
+target_include_directories(maxcut_base PUBLIC ${PROJECT_SOURCE_DIR})
+target_link_libraries(maxcut_base PRIVATE maxcut_warnings)
+
+add_executable(MaxCut
+    Main.cpp
+    Core/Core.cpp
+    Solver/SolverFactory.cpp
+    Solver/Algorithm/GoemansWilliamsonSolver.cpp
+)
+target_link_libraries(MaxCut PRIVATE maxcut_base maxcut_warnings Eigen3::Eigen libclarabel_c_static)
+target_compile_definitions(MaxCut PRIVATE CLARABEL_FEATURE_SDP)
+
 FetchContent_Declare(
     Catch2
     GIT_REPOSITORY https://github.com/catchorg/Catch2.git
@@ -44,31 +71,7 @@ FetchContent_Declare(
     SYSTEM
     EXCLUDE_FROM_ALL
 )
-
-FetchContent_MakeAvailable(eigen clarabel_cpp Catch2)
-
-add_executable(MaxCut
-    Main.cpp
-    Core/Core.cpp
-    Model/Graph.cpp
-    Model/CutResult.cpp
-    IO/ArgumentParser.cpp
-    IO/GraphParser.cpp
-    IO/Output.cpp
-    Solver/SolverFactory.cpp
-    Solver/Algorithm/UniformRandomSolver.cpp
-    Solver/Algorithm/BruteForceSolver.cpp
-    Solver/Algorithm/GoemansWilliamsonSolver.cpp
-    Solver/Algorithm/GreedySolver.cpp
-)
-
-target_compile_features(MaxCut PRIVATE cxx_std_20)
-target_include_directories(MaxCut PRIVATE ${PROJECT_SOURCE_DIR})
-target_link_libraries(MaxCut PRIVATE Eigen3::Eigen libclarabel_c_static)
-
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(MaxCut PRIVATE -Wall -Wextra -Wpedantic)
-endif()
+FetchContent_MakeAvailable(Catch2)
 
 enable_testing()
 
@@ -77,21 +80,9 @@ add_executable(UnitTests
     Tests/GraphParserTest.cpp
     Tests/BruteForceSolverTest.cpp
     Tests/GreedySolverTest.cpp
-    Solver/Algorithm/BruteForceSolver.cpp
-    Solver/Algorithm/GreedySolver.cpp
-    IO/ArgumentParser.cpp
-    IO/GraphParser.cpp
-    Model/Graph.cpp
-    Model/CutResult.cpp
 )
 
-target_compile_features(UnitTests PRIVATE cxx_std_20)
-target_include_directories(UnitTests PRIVATE ${PROJECT_SOURCE_DIR})
-target_link_libraries(UnitTests PRIVATE Catch2::Catch2WithMain)
-
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(UnitTests PRIVATE -Wall -Wextra -Wpedantic)
-endif()
+target_link_libraries(UnitTests PRIVATE maxcut_base maxcut_warnings Catch2::Catch2WithMain)
 
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 include(Catch)
