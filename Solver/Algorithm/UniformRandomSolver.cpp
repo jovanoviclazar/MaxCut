@@ -3,6 +3,9 @@
 
 namespace MaxCut
 {
+UniformRandomSolver::UniformRandomSolver(unsigned seed) : m_rng(seed)
+{
+}
 namespace
 {
 double computeCost(std::vector<size_t> &tmpVectorA, std::vector<size_t> &tmpVectorB, const Graph &graph)
@@ -18,10 +21,6 @@ double computeCost(std::vector<size_t> &tmpVectorA, std::vector<size_t> &tmpVect
     return returnCutCost;
 }
 } // namespace
-UniformRandomSolver::UniformRandomSolver(unsigned seed)
-{
-    m_rng.seed(seed);
-}
 CutResult UniformRandomSolver::Solve(const Graph &graph)
 {
     std::vector<size_t> vectorA;
