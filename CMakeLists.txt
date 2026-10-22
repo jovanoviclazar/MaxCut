@@ -51,9 +51,11 @@ add_library(maxcut_base STATIC
     Solver/Algorithm/UniformRandomSolver.cpp
     Solver/Algorithm/BruteForceSolver.cpp
     Solver/Algorithm/GreedySolver.cpp
+    Solver/Algorithm/GoemansWilliamsonSolver.cpp
 )
 target_include_directories(maxcut_base PUBLIC ${PROJECT_SOURCE_DIR})
-target_link_libraries(maxcut_base PRIVATE maxcut_warnings)
+target_link_libraries(maxcut_base PRIVATE maxcut_warnings Eigen3::Eigen libclarabel_c_static)
+target_compile_definitions(maxcut_base PRIVATE CLARABEL_FEATURE_SDP)
 
 add_executable(MaxCut
     Main.cpp
@@ -80,6 +82,8 @@ add_executable(UnitTests
     Tests/GraphParserTest.cpp
     Tests/BruteForceSolverTest.cpp
     Tests/GreedySolverTest.cpp
+    Tests/UniformRandomSolverTest.cpp
+    Tests/GoemansWilliamsonSolverTest.cpp
 )
 
 target_link_libraries(UnitTests PRIVATE maxcut_base maxcut_warnings Catch2::Catch2WithMain)
